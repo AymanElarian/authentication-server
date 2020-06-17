@@ -47,14 +47,38 @@ class User extends Model {
   }
 
   getRoles() {
+
     return this.roles.map(el => el.name).concat('user')
   }
+  getOneRoles() {
 
+    return this.roles[0]['name'];
+  }
+  getAcls() {
+    let acl = {};
+
+
+    this.roles.forEach(function (role) {
+      role.acls.forEach(function (o) {
+        // acl[role.name] = { ...acl[role.name],  [o.module]:o };
+        acl[o.module] = o;
+
+      });
+
+
+
+    });
+
+
+    return acl
+  }
   getUser() {
     return {
       id: this.id,
       username: this.username,
       roles: this.getRoles(),
+      acls: this.getAcls(),
+      acl_role: this.getOneRoles(),
       token: this.getJwt()
     }
   }

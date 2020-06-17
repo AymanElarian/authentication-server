@@ -35,8 +35,8 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 app.post('/login', userController.postLogin)
-app.post('/signup', userController.postSignup)
-app.get('/webhook', userController.getWebhook)
+//app.post('/signup', userController.postSignup)
+//app.get('/webhook', userController.getWebhook)
 app.get('/jwks', userController.getJwks)
 /**
  * Start Express server.
